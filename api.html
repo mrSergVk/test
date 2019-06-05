@@ -1,0 +1,147 @@
+<html>
+<title>API</title>
+<style>
+    p {
+        margin: 2px 0;
+        font-weight: bold;
+    }
+
+    p > i {
+        font-weight: normal;
+    }
+</style>
+<body>
+<h1>This is API</h1><br>
+<i>All requests can be <b>POST</b> or <b>GET</b> request (not specified on task)</i><br>
+<i>Need post request with content type: <b>multipart/form-data</b></i>; in future can possible make JSON request, but it
+is not specified on task, now it as is</i><br>
+<i>Database filled automatically</i>
+<hr>
+<span>Possible response codes: 200, 400, 401, 500</span>
+<hr>
+<hr>
+<h3>/signUp</h3>
+<a href="http://ttttask.zzz.com.ua/signUp?email=test@test.test&password=test" target="_blank">Test request</a>
+<h4>Request (form data):</h4>
+<p>email: string</p>
+<p>password: string <i>min 4 symbols</i></p>
+<hr>
+<h4>Response (json):</h4>
+<pre>{
+    error: 0,
+    message: "Success",
+    data_list: {
+        token: "311103e3238daca972872bac049c5bd53d4f8947"
+    }
+}
+</pre>
+
+<hr>
+<hr>
+<h3>/signIn</h3>
+<a href="http://ttttask.zzz.com.ua/signIn?email=test@test.test&password=test" target="_blank">Test request</a>
+<h4>Request (form data):</h4>
+<p>email: string</p>
+<p>password: string</p>
+<hr>
+<h4>Response (json):</h4>
+<pre>{
+    error: 0,
+    message: "Success",
+    data_list: {
+        token: "311103e3238daca972872bac049c5bd53d4f8947"
+    }
+}
+</pre>
+
+<hr>
+<hr>
+<h3>/createTask</h3>
+<a href="http://ttttask.zzz.com.ua/createTask?token=e699fadc45db4493e066a5cc5144352c82abbb1c&title=Test%20task&due_date=2019-06-10&priority=low"
+   target="_blank">Test request</a>
+<h4>Request (form data):</h4>
+<p>token: string</p>
+<p>title: string <i>1024 symbols</i></p>
+<p>due_date: date</p>
+<p>priority <i> enum('low', 'normal', 'high')</i></p>
+<hr>
+<h4>Response (json):</h4>
+<pre>{
+    error: 0,
+    message: "Success",
+    data_list: {
+        id: 1
+    }
+}
+</pre>
+
+<hr>
+<hr>
+<h3>/markTaskDone</h3>
+<a href="http://ttttask.zzz.com.ua/markTaskDone?token=e699fadc45db4493e066a5cc5144352c82abbb1c&id=1" target="_blank">Test
+    request</a>
+<h4>Request (form data):</h4>
+<p>token: string</p>
+<p>id: int</p>
+<hr>
+<h4>Response (json):</h4>
+<pre>{
+    error: 0,
+    message: "Success",
+    data_list: {
+        id: 1
+    }
+}
+</pre>
+
+<hr>
+<hr>
+<h3>/deleteTask</h3>
+<a href="http://ttttask.zzz.com.ua/deleteTask?token=e699fadc45db4493e066a5cc5144352c82abbb1c&id=1" target="_blank">Test
+    request</a>
+<h4>Request (form data):</h4>
+<p>token: string</p>
+<p>id: int</p>
+<hr>
+<h4>Response (json):</h4>
+<pre>{
+    error: 0,
+    message: "Success",
+    data_list: {
+        id: 1
+    }
+}
+</pre>
+
+<hr>
+<hr>
+<h3>/getTasksList</h3>
+<a href="http://ttttask.zzz.com.ua/getTasksList?token=e699fadc45db4493e066a5cc5144352c82abbb1c&page=1&sort_by=due_date&sort_order=ASC"
+   target="_blank">Test
+    request</a>
+<h4>Request (form data):</h4>
+<p>token: string</p>
+<p>*page: int</p>
+<p>*sort_by: string <i>enum('title', 'due_date', 'priority')</i></p>
+<p>*sort_order: string <i>enum('ASC', 'DESC')</i></p>
+<i>* - optional</i>
+<hr>
+<h4>Response (json):</h4>
+<pre>{
+    error: 0,
+    message: "Success",
+    data_list: {
+        tasks: [
+            {
+                id: 1,
+                title: "Test title will be here",
+                due_date: "2019-06-05",
+                priority: "normal",
+                is_done: false
+            },...
+        ]
+    }
+}
+</pre>
+</body>
+</html>
